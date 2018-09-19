@@ -13,7 +13,6 @@ Problem 1
 ### Create a data frame for Problem 1:
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
