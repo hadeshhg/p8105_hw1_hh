@@ -1,13 +1,9 @@
 ---
 title: "p8105_hw1_hq2163"
 author: "Hanbo Qiu"
-date: "September 15, 2018"
+date: "September 18, 2018"
 output: github_document
 ---
-
-```{r setup, include = FALSE}
-library(tidyverse)
-```
 
 Problem 1  
 ------------------------------------------------------------
@@ -15,6 +11,11 @@ Problem 1
 ###This problem focuses on variable types and coercion.
 
 ### Create a data frame for Problem 1:
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
 
 ```{r creat_dataframe}
 set.seed(2163)
@@ -26,7 +27,6 @@ dataframe_problem1 = tibble(
   vec_factor = factor(c("football", "basketball", "baseball", "ice_hockey", "football", "basketball", "baseball", "ice_hockey", "football", "basketball"))
 )
 ```
-
 ### Try to take the mean of each variable in my dataframe:
 
 ```{r vec_mean}
@@ -65,6 +65,10 @@ Problem 2
 
 ### Create a data frame for Problem 2:
 
+```{r, include = FALSE}
+library(tidyverse)
+```
+
 ```{r plot_df}
 plot_df = tibble(
   x = rnorm(1000),
@@ -78,6 +82,30 @@ plot_df = tibble(
 ### A short description of my vector:
 
 * the size of the dataset is `r nrow(plot_df)`*`r ncol(plot_df)`.
-* the mean of x is `r mean(plot_df$x)`gg
+* the mean of x is `r mean(plot_df$x)`
 * the median of x is `r median(plot_df$x)`
 * the proportion of cases for which the logical vector is TRUE is `r sum(plot_df$vec_logical2)/1000`
+
+### Make a scatterplot of y vs x:
+
+```{r}
+ggplot(plot_df, aes(x , y, color=vec_logical2))+ geom_point()
+```
+
+###The first picture is a scatterplot of y vs vec_logical2. The red spots represent x+y<0(vec_logical2=FALSE) and the green spots represent x+y>0(vec_logical2=TRUE.)
+
+```{r}
+ggsave("logical_plot.tiff")
+```
+
+```{r}
+ggplot(plot_df, aes(x , y, color=vec_numeric2))+ geom_point()
+```
+
+###The second picture is a scatterplot of y vs vec_numeric2. The dark blue spots represent vec_numeric2=0 and the light blue spots represent vec_numeric2=1.
+
+```{r}
+ggplot(plot_df, aes(x , y, color=vec_factor2))+ geom_point()
+```
+
+###The third picture is a scatterplot of y vs vec_factor2. The red spots represent vec_factor2=FALSE and the green spots represent vec_factor2=TRUE.
